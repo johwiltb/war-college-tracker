@@ -1,0 +1,9 @@
+{
+  "name": "Joint Command & War College Tracker",
+  "short_name": "War College",
+  "description": "A private professional military education and command-development tracker.",
+  "start_url": "./#/",
+  "display": "standalone",
+  "background_color": "#f3f1ea",
+  "theme_color": "#12282f"
+}
