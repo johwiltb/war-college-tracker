@@ -12,19 +12,14 @@ Curriculum entries contain citations, assignments, and links—not copies of cop
 - MCDP 6, *Command and Control* — MCPEL official publication page; the linked PDF includes Change 1 dated 4 April 2018.
 - *American Military History, Volume I: The United States Army and the Forging of a Nation* — U.S. Army Center of Military History catalog page, CMH Pub 30-21.
 - *American Military History, Volume II: The United States Army in the Global Era* — U.S. Army Center of Military History catalog page, CMH Pub 30-22.
+- Christopher R. Gabel and the Staff Ride Team, *Staff Ride Handbook for the Vicksburg Campaign, December 1862–July 1863* — official Army University Press PDF, published by the Combat Studies Institute in June 2001.
+- *Campaigns of World War II: A World War II Commemorative Series* — official U.S. Army Center of Military History series page for CMH Pubs 72-1 through 72-40. Select the campaign-specific brochure appropriate to the assigned week.
+- FM 3-0, *Operations* — official Army Publishing Directorate PDF dated 25 March 2025.
+- JP 3-0, *Joint Campaigns and Operations* — Joint Chiefs of Staff official 3-0 Operations Series page.
 - JP 5-0, *Joint Planning* — Joint Chiefs of Staff official 5-0 Planning Series page.
+- Joint Doctrine Note 1-19, *Competition Continuum* — official Joint Chiefs of Staff PDF dated 3 June 2019. This is a historical pre-doctrinal publication whose guidance is not authoritative.
+- *National Security Strategy of the United States of America* — official White House PDF dated November 2025.
 - Clausewitz, *On War*, J. J. Graham translation — Project Gutenberg ebook 1946; public-domain English translation.
-
-## Sources requiring link verification
-
-These entries intentionally have no clickable URL in the curriculum:
-
-- Combat Studies Institute, *Vicksburg Campaign Staff Ride Briefing Book*.
-- U.S. Army Center of Military History, selected World War II Campaign Brochure series titles. Choose the campaign-specific official brochure before assigning exact pages.
-- Department of the Army, FM 3-0, *Operations*. Use the Army Publishing Directorate and confirm the current edition.
-- Joint Chiefs of Staff, JP 3-0. The title and edition have changed during recent doctrine updates; confirm the current Joint Electronic Library publication before use.
-- Joint Doctrine Note 1-19, *Competition Continuum*. Confirm current status and whether superseded.
-- The White House, *National Security Strategy*. Select the administration’s current official edition.
 
 ## Copyrighted works referenced without copied content
 
@@ -33,10 +28,10 @@ These entries intentionally have no clickable URL in the curriculum:
 
 ## Editions to confirm before formal use
 
-- Every joint publication and Army field manual, because doctrine updates can supersede titles and page numbers.
+- Every joint publication and Army field manual, because future doctrine updates can supersede the verified titles and dates recorded here.
 - MCDP 1, 5, and 6 for changes or replacements after this review date.
-- Current National Security Strategy and any subordinate national defense or military strategy used to supplement Term 8.
-- Staff-ride and campaign brochures if an instructor requires a specific edition.
+- Any subordinate national defense or military strategy used to supplement the November 2025 National Security Strategy.
+- The campaign-specific World War II brochure selected for a given week if an instructor requires a particular publication or revision.
 
 ## Curriculum assumptions
 
