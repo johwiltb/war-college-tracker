@@ -6,6 +6,7 @@ on:
     paths:
       - scripts/apply-clear-fixes.mjs
       - scripts/remove-react-router.mjs
+      - src/lib/router.tsx
       - .github/workflows/apply-clear-fixes.yml
   workflow_dispatch:
 
