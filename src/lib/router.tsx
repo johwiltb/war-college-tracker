@@ -82,7 +82,8 @@ export interface RouteProps {
   children?: ReactNode
 }
 
-export function Route(_props: RouteProps): null {
+export function Route(props: RouteProps): null {
+  void props
   return null
 }
 
