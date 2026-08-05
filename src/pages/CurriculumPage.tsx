@@ -1,6 +1,6 @@
 import { ChevronRight, Filter, Search, SlidersHorizontal } from 'lucide-react'
 import { useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from '../lib/router'
 import { ProgressBar } from '../components/ProgressBar'
 import { useData } from '../context/DataContext'
 import { allWeeks, curriculum } from '../data/curriculum'
@@ -49,7 +49,7 @@ export function CurriculumPage() {
       {curriculum.map((termItem) => {
         const termWeeks = results.filter((week) => week.termId === termItem.id)
         if (!termWeeks.length) return null
-        return <section className="curriculum-term" key={termItem.id}><div className="term-heading"><span className="term-seal">{termItem.number}</span><div><p>TERM {String(termItem.number).padStart(2, '0')}</p><h2>{termItem.title}</h2><span>{termItem.description}</span></div></div><div className="week-list">{termWeeks.map((week) => { const progress = data.weekProgress[week.id]; const percent = calculateWeekPercent(week, progress); return <Link className="week-row" to={`/week/${week.id}`} key={week.id}><div className="week-number"><span>WEEK</span><strong>{String(week.number).padStart(2, '0')}</strong></div><div className="week-row-main"><div><h3>{week.title}</h3><p>{week.topic}</p></div><div className="week-tags"><span>{week.era}</span><span>{week.commandLevel}</span><span>{week.estimatedHours} hrs</span><span>{week.readings.length} readings</span></div></div><div className="week-progress"><span className={`status-pill status-${progress?.status ?? 'not-started'}`}>{(progress?.status ?? 'not-started').replace('-', ' ')}</span><ProgressBar value={percent} label={`${percent}%`} /></div><ChevronRight /></Link> })}</div></section>
+        return <section className="curriculum-term" key={termItem.id}><div className="term-heading"><span className="term-seal">{termItem.number}</span><div><p>TERM {String(termItem.number).padStart(2, '0')}</p><h2>{termItem.title}</h2><span>{termItem.description}</span></div></div><div className="week-list">{termWeeks.map((week) => { const progress = data.weekProgress[week.id]; const percent = calculateWeekPercent(week, progress); return <Link className="week-row" to={`/week/${week.id}`} key={week.id}><div className="week-number"><span>WEEK</span><strong>{String(week.number).padStart(2, '0')}</strong></div><div className="week-row-main"><div><h3>{week.title}</h3><p>{week.topic}</p></div><div className="week-tags"><span>{week.era}</span><span>{week.commandLevel}</span><span>{week.coreMinutes} min core</span><span>+{week.extensionMinutes} min optional</span><span>{week.readings.length} readings</span></div></div><div className="week-progress"><span className={`status-pill status-${progress?.status ?? 'not-started'}`}>{(progress?.status ?? 'not-started').replace('-', ' ')}</span><ProgressBar value={percent} label={`${percent}%`} /></div><ChevronRight /></Link> })}</div></section>
       })}
       {!results.length && <div className="empty-state"><Filter size={32} /><h2>No weeks match these filters</h2><p>Try broadening the search or clearing one or more filters.</p><button className="secondary-button" onClick={resetFilters}>Reset all filters</button></div>}
     </div>

@@ -7,6 +7,7 @@ interface WeekOutline {
   level: string
   campaign?: string
   hours?: number
+  sourceIndexes?: [number, number]
 }
 
 interface TermOutline {
@@ -57,24 +58,66 @@ const strategySources: SourceSpec[] = [
   { title: 'National Security Strategy of the United States of America', author: 'The White House', publication: 'National Security Strategy', url: 'https://www.whitehouse.gov/wp-content/uploads/2025/12/2025-National-Security-Strategy.pdf', citation: 'The White House. National Security Strategy of the United States of America. November 2025.', availabilityNotes: officialLinkNote },
 ]
 
+const term1ReadingAssignments: Record<number, [string, string]> = {
+  1: ['Read the foreword and Chapter 1 sections defining war, friction, uncertainty, fluidity, disorder, and the human dimension.', 'Read the introduction and opening discussion of command and control; identify how information supports—but cannot replace—judgment.'],
+  2: ['Read the introduction and the sections explaining the nature, theory, and practice of command and control, including decision and feedback.', 'Revisit the sections on friction, uncertainty, and the clash of opposing wills; connect each to a command-and-control failure mode.'],
+  3: ['Read the foreword, introduction, and opening planning chapters on problem framing, decision, and preparation for adaptation.', 'Read the sections on uncertainty, tempo, and initiative; note why planning cannot eliminate battlefield disorder.'],
+  4: ['Read the introduction and opening chapters on the nature and theory of logistics, operational reach, and the relationship between logistics and tempo.', 'Read the sections addressing feasibility, risk, and the need to adapt plans when assumptions or resources change.'],
+  5: ['Read the Civil War sections covering the Mississippi Valley and the strategic setting of the Vicksburg campaign through the end of 1862.', 'Read the chapters or sections covering the 1862–1863 strategic situation, the Mississippi River, and the political importance of Vicksburg.'],
+  6: ['Read the staff-ride sections on terrain, river approaches, roads, railroads, weather, population, and other operational-environment factors.', 'Read the Vicksburg campaign narrative through the Union decision to seek a crossing south of the city.'],
+  7: ['Read the staff-ride order of battle, commander biographies, dispositions, capabilities, and intelligence available before the decisive campaign.', 'Read the mission-analysis sections dealing with facts, assumptions, information requirements, constraints, and risk.'],
+  8: ['Read the sections on course-of-action development, including suitability, feasibility, acceptability, distinguishability, and completeness.', 'Read the staff-ride account of failed approaches and pre-crossing options; identify at least three genuinely different Union approaches.'],
+  9: ['Read the course-of-action wargaming sections on action–reaction–counteraction, decision points, branches, and recording results.', 'Read the staff-ride sections covering the proposed crossing and likely Confederate reactions before studying the historical outcome.'],
+  10: ['Read the staff-ride narrative from the Bruinsburg crossing through the inland maneuver, battles, and investment of Vicksburg.', 'Read the sections on operational reach, distribution, maintenance, health services, and sustaining tempo during extended maneuver.'],
+  11: ['Read the staff-ride sections presenting Confederate command relationships, options, constraints, and responses during the campaign.', 'Read the Vicksburg and Confederate-home-front sections; identify political pressures that shaped military choices.'],
+  12: ['Read the staff-ride conclusions and critical-decision discussions, then revisit the maps and timeline without reading the authors’ lessons first.', 'Read the official history’s summary of Vicksburg and its strategic consequences for the remainder of the war.'],
+}
+
+const term1Guidance: Record<number, string[]> = {
+  1: ['Capture three doctrinal claims in your own words.', 'Write a 150-word concept note before opening the main prompt.', 'Use one historical example and one engineering or cybersecurity analogy, then state where the analogy fails.', 'Score only the rubric categories you can support with evidence; explain any zero rather than guessing.'],
+  2: ['Describe the decision the commander must make, not merely the communications technology available.', 'Draft a purpose, key tasks, and end state that subordinates could use during communications loss.', 'Test the intent against one subordinate action you did not explicitly authorize.', 'Record where additional control would help and where it would slow adaptation.'],
+  3: ['Separate facts, assumptions, assessments, and unknowns.', 'Create two materially different courses of action before selecting one.', 'Name the assumption most likely to invalidate your preferred plan.', 'Write one observable trigger for reframing the problem.'],
+  4: ['Estimate demand, capacity, distance, time, and the weakest sustainment link.', 'Identify where the force culminates if the estimate is wrong.', 'Change one logistics assumption and revise the operational approach.', 'Explain which combat action you would reduce to preserve endurance.'],
+  5: ['State the Union and Confederate political objectives separately.', 'Mark what you know only because of hindsight.', 'Define the theater problem without proposing a solution.', 'List three strategic constraints that cannot be solved by battlefield success alone.'],
+  6: ['Build or annotate a map before writing prose.', 'Identify terrain that enables movement, terrain that channels it, and terrain that protects sustainment.', 'Explain how season, disease, population, and transportation interact.', 'Propose one operational approach and one reason geography may defeat it.'],
+  7: ['Build friendly and enemy capability summaries from the assigned sources.', 'State the most likely and most dangerous enemy courses of action.', 'List priority intelligence requirements and the decisions each supports.', 'Flag every assumption that substitutes for missing intelligence.'],
+  8: ['Develop three courses of action that differ in mechanism, risk, and operational approach.', 'Check each for suitability, feasibility, acceptability, distinguishability, and completeness.', 'Identify the main effort and accepted risk for each option.', 'Select comparison criteria before choosing your preferred course.'],
+  9: ['Wargame each course of action phase by phase.', 'Use action–reaction–counteraction rather than narrating only friendly success.', 'Record decision points, branches, resource demands, and likely culmination.', 'Revise or reject any course whose theory of success depends on enemy cooperation.'],
+  10: ['Issue intent and initial orders before reviewing the historical sequence.', 'Execute at least three decision turns without reloading an unfavorable result.', 'Record each consequential decision, expected enemy response, and reconsideration trigger.', 'Stop at the first major divergence and assess whether the plan or an assumption failed.'],
+  11: ['Adopt the Confederate command problem without using Union hindsight.', 'Identify how to impose delay, political cost, and logistical strain rather than merely seek battle.', 'Attack the assumptions in your Week 8 plan.', 'Write the strongest Confederate counter-campaign you can defend from available evidence.'],
+  12: ['Compare your decisions with the historical campaign without grading yourself on imitation.', 'Identify one sound decision that failed, one poor decision that succeeded, and why.', 'Complete the full after-action review and update your personal doctrine.', 'Choose one decision point to replay and specify what evidence would justify a different choice.'],
+}
+
+const defaultGuidance = [
+  'Read the required source and record two claims, one assumption, and one question.',
+  'Complete the applied exercise before drafting the command analysis.',
+  'Make enemy agency, sustainment, risk, and a reassessment trigger explicit.',
+  'Score the rubric based on demonstrated reasoning rather than simulated victory.',
+]
+
+const term1WordTargets: Record<number, number> = {
+  1: 250, 2: 250, 3: 300, 4: 300, 5: 300, 6: 300,
+  7: 350, 8: 350, 9: 350, 10: 450, 11: 450, 12: 700,
+}
+
 const termOutlines: TermOutline[] = [
   {
     title: 'Nature of War and Command',
     description: 'Theory, uncertainty, command, planning, logistics, and the Vicksburg command problem.',
     sources: [...marineDoctrine, ...civilWarSources],
     weeks: [
-      { title: 'The Nature of War', topic: 'Friction, uncertainty, violence, and the contest of human wills', era: 'Foundations', level: 'All echelons' },
-      { title: 'Command and Control', topic: 'Command philosophy, information, decision, and feedback', era: 'Foundations', level: 'Battalion–corps' },
-      { title: 'Planning Under Uncertainty', topic: 'Planning as preparation for adaptation rather than prediction', era: 'Foundations', level: 'Brigade–corps' },
-      { title: 'Logistics as a Warfighting Function', topic: 'Sustainment, tempo, reach, and logistics risk', era: 'Foundations', level: 'Brigade–theater' },
-      { title: 'Vicksburg Strategic Setting', topic: 'Political aims, the Mississippi River, and competing command problems', era: 'American Civil War', level: 'Theater', campaign: 'Vicksburg' },
-      { title: 'Geography and the Operational Environment', topic: 'Terrain, rivers, populations, weather, and operational approach', era: 'American Civil War', level: 'Army–theater', campaign: 'Vicksburg' },
-      { title: 'Friendly and Enemy Estimates', topic: 'Capabilities, intentions, assumptions, and intelligence gaps', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg' },
-      { title: 'Course-of-Action Development', topic: 'Distinct, feasible, acceptable, suitable, and complete options', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg' },
-      { title: 'Course-of-Action Wargaming', topic: 'Action–reaction–counteraction and decision-point identification', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg' },
-      { title: 'Campaign Execution', topic: 'Crossing, maneuver, sustainment, tempo, and adaptation', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg', hours: 2.5 },
-      { title: 'Red Command', topic: 'Confederate options, constraints, and counter-campaign design', era: 'American Civil War', level: 'Army–theater', campaign: 'Vicksburg' },
-      { title: 'Vicksburg Command Review', topic: 'Critical decisions, counterfactuals, AAR, and personal doctrine', era: 'American Civil War', level: 'Army–theater', campaign: 'Vicksburg', hours: 3 },
+      { title: 'The Nature of War', topic: 'Friction, uncertainty, violence, and the contest of human wills', era: 'Foundations', level: 'All echelons', sourceIndexes: [0, 1] },
+      { title: 'Command and Control', topic: 'Command philosophy, information, decision, and feedback', era: 'Foundations', level: 'Battalion–corps', sourceIndexes: [1, 0] },
+      { title: 'Planning Under Uncertainty', topic: 'Planning as preparation for adaptation rather than prediction', era: 'Foundations', level: 'Brigade–corps', sourceIndexes: [2, 0] },
+      { title: 'Logistics as a Warfighting Function', topic: 'Sustainment, tempo, reach, and logistics risk', era: 'Foundations', level: 'Brigade–theater', sourceIndexes: [3, 2] },
+      { title: 'Vicksburg Strategic Setting', topic: 'Political aims, the Mississippi River, and competing command problems', era: 'American Civil War', level: 'Theater', campaign: 'Vicksburg', sourceIndexes: [5, 4] },
+      { title: 'Geography and the Operational Environment', topic: 'Terrain, rivers, populations, weather, and operational approach', era: 'American Civil War', level: 'Army–theater', campaign: 'Vicksburg', sourceIndexes: [6, 5] },
+      { title: 'Friendly and Enemy Estimates', topic: 'Capabilities, intentions, assumptions, and intelligence gaps', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg', sourceIndexes: [6, 2] },
+      { title: 'Course-of-Action Development', topic: 'Distinct, feasible, acceptable, suitable, and complete options', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg', sourceIndexes: [2, 6] },
+      { title: 'Course-of-Action Wargaming', topic: 'Action–reaction–counteraction and decision-point identification', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg', sourceIndexes: [2, 6] },
+      { title: 'Campaign Execution', topic: 'Crossing, maneuver, sustainment, tempo, and adaptation', era: 'American Civil War', level: 'Army', campaign: 'Vicksburg', hours: 2.5, sourceIndexes: [6, 3] },
+      { title: 'Red Command', topic: 'Confederate options, constraints, and counter-campaign design', era: 'American Civil War', level: 'Army–theater', campaign: 'Vicksburg', sourceIndexes: [6, 4] },
+      { title: 'Vicksburg Command Review', topic: 'Critical decisions, counterfactuals, AAR, and personal doctrine', era: 'American Civil War', level: 'Army–theater', campaign: 'Vicksburg', hours: 3, sourceIndexes: [6, 5] },
     ],
   },
   {
@@ -221,14 +264,15 @@ const rhythm = [
 
 function buildReading(source: SourceSpec, week: WeekOutline, weekNumber: number, index: number): Reading {
   const requirement = index === 0 ? 'required' : 'optional'
+  const assignmentOverride = term1ReadingAssignments[weekNumber]?.[index]
   return {
     id: `w${weekNumber}-r${index + 1}`,
     title: source.title,
     author: source.author,
     publication: source.publication,
-    assignment: index === 0 ? `Read the sections most directly addressing ${week.topic.toLowerCase()}; target 25–35 pages.` : `Consult the index and relevant campaign or doctrinal section for ${week.title}.`,
+    assignment: assignmentOverride ?? (index === 0 ? `Read the sections most directly addressing ${week.topic.toLowerCase()}; target 25–35 pages.` : `Consult the index and relevant campaign or doctrinal section for ${week.title}.`),
     requirement,
-    estimatedMinutes: index === 0 ? 45 : 25,
+    estimatedMinutes: index === 0 ? 35 : 20,
     url: source.url,
     citation: source.citation,
     instructions: `Annotate the author’s central claim, command implications, unstated assumptions, and one point that may not transfer to another era.`,
@@ -239,8 +283,9 @@ function buildReading(source: SourceSpec, week: WeekOutline, weekNumber: number,
 function buildWeek(term: TermOutline, termIndex: number, outline: WeekOutline, weekIndex: number): CurriculumWeek {
   const weekNumber = termIndex * 12 + weekIndex + 1
   const pattern = rhythm[weekIndex % rhythm.length]
-  const primary = term.sources[weekIndex % term.sources.length]
-  const secondary = term.sources[(weekIndex + 1) % term.sources.length]
+  const [primaryIndex, secondaryIndex] = outline.sourceIndexes ?? [weekIndex % term.sources.length, (weekIndex + 1) % term.sources.length]
+  const primary = term.sources[primaryIndex]
+  const secondary = term.sources[secondaryIndex]
   const campaign = outline.campaign ? [outline.campaign] : []
   return {
     id: `week-${weekNumber}`,
@@ -251,6 +296,9 @@ function buildWeek(term: TermOutline, termIndex: number, outline: WeekOutline, w
     era: outline.era,
     commandLevel: outline.level,
     estimatedHours: outline.hours ?? 2,
+    coreMinutes: 120,
+    extensionMinutes: Math.max(20, Math.round(((outline.hours ?? 2) * 60) - 120)),
+    guidanceSteps: term1Guidance[weekNumber] ?? defaultGuidance,
     learningObjectives: [
       `Explain how ${outline.topic.toLowerCase()} affects command decisions at the ${outline.level.toLowerCase()} level.`,
       `Evaluate at least two competing approaches to the ${outline.title.toLowerCase()} problem using explicit evidence and assumptions.`,
@@ -269,7 +317,7 @@ function buildWeek(term: TermOutline, termIndex: number, outline: WeekOutline, w
       title: 'Command analysis',
       prompt: `You are the responsible commander or senior planner confronting ${outline.title}. Define the political and military objective, identify the most consequential uncertainty, compare two genuinely distinct options, and recommend a decision. Explain the enemy response you expect, the sustainment constraint most likely to govern the operation, the risk you accept, and the observable trigger that would make you reconsider. Do not judge quality solely by whether the historical or simulated side “won.”`,
       responseType: pattern.responseType,
-      suggestedMinimumWords: weekIndex === 11 ? 900 : 450,
+      suggestedMinimumWords: term1WordTargets[weekNumber] ?? (weekIndex === 11 ? 900 : 450),
       planningTemplateId: pattern.template,
       rubricCriteria: ['Objectives', 'Enemy and environment', 'Courses of action', 'Sustainment', 'Risk and decision points', 'Clarity'],
     }],
@@ -299,6 +347,9 @@ export function validateCurriculum(terms: CurriculumTerm[] = curriculum): string
     if (ids.has(week.id)) errors.push(`Duplicate week ID: ${week.id}.`)
     ids.add(week.id)
     if (!week.title.trim() || !week.topic.trim()) errors.push(`${week.id} lacks substantive title or topic.`)
+    if (week.coreMinutes < 60 || week.coreMinutes > 120) errors.push(`${week.id} must keep the core path between 60 and 120 minutes.`)
+    if (week.extensionMinutes < 0) errors.push(`${week.id} has a negative extension estimate.`)
+    if (week.guidanceSteps.length < 3) errors.push(`${week.id} has insufficient learner guidance.`)
     if (week.learningObjectives.length < 3) errors.push(`${week.id} has fewer than 3 objectives.`)
     if (!week.readings.some((reading) => reading.requirement === 'required')) errors.push(`${week.id} has no required reading.`)
     if (!week.exercises.length) errors.push(`${week.id} has no exercise.`)

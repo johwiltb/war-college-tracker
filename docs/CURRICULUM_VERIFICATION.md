@@ -35,7 +35,7 @@ Curriculum entries contain citations, assignments, and links—not copies of cop
 
 ## Curriculum assumptions
 
-- The normal workload is approximately two hours: about 45 minutes of required reading, up to 25 minutes of optional reading, and an applied/writing product. Major simulations are labeled from 3 to 5 hours.
+- The normal workload is a 120-minute core path: approximately 35 minutes of required reading, 35–60 minutes of application, and the remaining time for writing and reflection. Optional reading and expanded execution are identified as extension work. Major simulations retain a longer full-path estimate.
 - Source assignments describe the relevant subject area and a reading target rather than inventing page numbers that may not match every edition.
 - The four-week concept / historical problem / simulation / red-team-and-review rhythm repeats throughout the program but bends where the subject calls for a different emphasis.
 - Historical exercises require a decision before comparing it with the historical outcome.

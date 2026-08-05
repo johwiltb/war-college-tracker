@@ -19,7 +19,7 @@ The application is designed for **unclassified personal study only**. Do not ent
 ## Architecture
 
 - React 19 + TypeScript + Vite
-- React Router `HashRouter`
+- Dependency-free local hash router tailored to the application’s static GitHub Pages routes
 - Supabase JS client with PKCE authentication
 - Zod validation for untrusted imports
 - Local storage for guest records and temporary recovery drafts
@@ -32,9 +32,11 @@ Important paths:
 - `src/types/domain.ts` — application domain model
 - `src/context/` — authentication and persistence providers
 - `src/pages/` — primary application routes
+- `src/lib/router.tsx` — dependency-free hash navigation and route matching
 - `src/lib/storage.ts` — guest storage and validated backup format
 - `supabase/migrations/` — schema and RLS migration
-- `.github/workflows/deploy-pages.yml` — GitHub Pages deployment
+- `.github/workflows/deploy-pages.yml` — gated GitHub Pages deployment
+- `.github/workflows/quality.yml` — pull-request quality checks
 
 ## Local development
 
@@ -57,6 +59,8 @@ npm run test
 npm run build
 npm run preview
 ```
+
+The deployment workflow gates publication on linting, type checking, unit tests, a high-severity production-dependency audit, a critical-severity full-tree audit, and the production build. Pull requests receive the same checks through `.github/workflows/quality.yml`.
 
 ## Environment variables
 
@@ -83,7 +87,7 @@ Follow [`docs/SETUP.md`](docs/SETUP.md) for the exact project, OAuth callback, r
 
 ## GitHub Pages deployment
 
-Vite is centrally configured with `/war-college-tracker/` as its base and the app uses hash routes. The included workflow builds `dist` on pushes to `main` or manual dispatch and deploys it with the official Pages actions.
+Vite is centrally configured with `/war-college-tracker/` as its base and the app uses hash routes. The included workflow validates and builds `dist` on pushes to `main` or manual dispatch, then deploys it with the official Pages actions.
 
 After the one-time setup in `docs/SETUP.md`, deployment is automatic:
 
@@ -95,6 +99,10 @@ To validate the exact production artifact locally:
 
 ```bash
 npm ci
+npm run lint
+npm run typecheck
+npm run test
+npm audit --omit=dev --audit-level=high
 npm run build
 npm run preview
 ```
@@ -113,6 +121,7 @@ JSON exports contain an export format version, timestamp, user settings, week pr
 - User-authored Markdown remains plain text; the app does not use `dangerouslySetInnerHTML`.
 - Destructive data operations require two confirmations.
 - Local browser data is readable by anyone with access to that browser profile; use an OS account and device protections appropriate to personal notes.
+- The dependency audit report is retained at [`docs/DEPENDENCY_AUDIT.md`](docs/DEPENDENCY_AUDIT.md).
 
 ## Curriculum sourcing and limitations
 
@@ -120,6 +129,7 @@ The repository includes citations and official links where verified without repr
 
 Known limitations:
 
+- Term 1 now uses curated section-level assignments and a two-hour core path with optional extension work. Later terms retain broader topic-level assignments and should receive the same instructor-level curation before formal use.
 - External source availability and doctrine editions change; several readings intentionally omit a URL pending human verification.
 - Markdown is edited and exported as plain text; there is no HTML preview.
 - Guest data is device/browser-local until manually exported or migrated after sign-in.

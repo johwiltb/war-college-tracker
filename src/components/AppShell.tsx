@@ -1,6 +1,6 @@
 import { BookOpen, Database, FileText, LayoutDashboard, LogIn, LogOut, Menu, Moon, Settings, ShieldAlert, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from '../lib/router'
 import { useAuth } from '../context/AuthContext'
 import { useData } from '../context/DataContext'
 
