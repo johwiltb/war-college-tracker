@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - scripts/apply-clear-fixes.mjs
+      - .github/workflows/apply-clear-fixes.yml
   workflow_dispatch:
 
 permissions:
