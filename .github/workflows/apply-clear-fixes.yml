@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - scripts/apply-clear-fixes.mjs
+      - scripts/remove-react-router.mjs
       - .github/workflows/apply-clear-fixes.yml
   workflow_dispatch:
 
@@ -38,14 +39,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Apply source remediation
+      - name: Apply curriculum and quality remediation
         run: node scripts/apply-clear-fixes.mjs
+
+      - name: Replace React Router with local hash navigation
+        run: |
+          node scripts/remove-react-router.mjs
+          npm uninstall react-router-dom
 
       - name: Apply non-breaking dependency remediation
         run: npm audit fix || true
-
-      - name: Install current patched React Router release
-        run: npm install react-router-dom@latest --save-exact
 
       - name: Capture dependency audit
         run: |
@@ -62,7 +65,7 @@ jobs:
             '',
             `Generated: ${new Date().toISOString()}`,
             '',
-            'The repository applied `npm audit fix` without `--force`, installed the current patched React Router release, then reran the audit. Publication is blocked by any high-severity production dependency or any critical finding in the full dependency tree.',
+            'The repository removed React Router after npm reported high-severity advisories across every available supported release, applied `npm audit fix` without `--force`, and reran the audit. Publication is blocked by any high-severity production dependency or any critical finding in the full dependency tree.',
             '',
             '## Summary after remediation',
             '',
@@ -117,7 +120,7 @@ jobs:
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
       - name: Remove one-time remediation machinery
-        run: rm scripts/apply-clear-fixes.mjs .github/workflows/apply-clear-fixes.yml
+        run: rm scripts/apply-clear-fixes.mjs scripts/remove-react-router.mjs .github/workflows/apply-clear-fixes.yml
 
       - name: Commit verified remediation
         run: |
