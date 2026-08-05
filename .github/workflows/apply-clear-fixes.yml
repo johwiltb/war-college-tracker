@@ -44,8 +44,8 @@ jobs:
       - name: Apply non-breaking dependency remediation
         run: npm audit fix || true
 
-      - name: Pin safe React Router version
-        run: npm install react-router-dom@7.11.0 --save-exact
+      - name: Install current patched React Router release
+        run: npm install react-router-dom@latest --save-exact
 
       - name: Capture dependency audit
         run: |
@@ -62,7 +62,7 @@ jobs:
             '',
             `Generated: ${new Date().toISOString()}`,
             '',
-            'The repository applied `npm audit fix` without `--force`, pinned React Router to the nearest audited safe release, then reran the audit. Publication is blocked by any high-severity production dependency or any critical finding in the full dependency tree.',
+            'The repository applied `npm audit fix` without `--force`, installed the current patched React Router release, then reran the audit. Publication is blocked by any high-severity production dependency or any critical finding in the full dependency tree.',
             '',
             '## Summary after remediation',
             '',
