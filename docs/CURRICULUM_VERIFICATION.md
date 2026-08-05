@@ -15,6 +15,14 @@ Curriculum entries contain citations, assignments, and links—not copies of cop
 - JP 5-0, *Joint Planning* — Joint Chiefs of Staff official 5-0 Planning Series page.
 - Clausewitz, *On War*, J. J. Graham translation — Project Gutenberg ebook 1946; public-domain English translation.
 
+## Term 1 curation status
+
+- Weeks 1–12 use source selections chosen for each week rather than rotating sources mechanically.
+- Required readings now name the chapter, section group, campaign phase, or staff-ride material to study without inventing edition-dependent page numbers.
+- The normal path is capped at 120 core minutes. Optional readings and expanded simulations are labeled as extension work.
+- Writing targets increase from 250 words in the opening weeks to a 700-word Vicksburg command review.
+- Each week includes a sequenced learner battle rhythm so early assignments provide more scaffolding and later assignments demand greater independence.
+
 ## Sources requiring link verification
 
 These entries intentionally have no clickable URL in the curriculum:
@@ -40,7 +48,7 @@ These entries intentionally have no clickable URL in the curriculum:
 
 ## Curriculum assumptions
 
-- The normal workload is approximately two hours: about 45 minutes of required reading, up to 25 minutes of optional reading, and an applied/writing product. Major simulations are labeled from 3 to 5 hours.
+- The normal workload is a 120-minute core path: approximately 35 minutes of required reading, 35–60 minutes of application, and the remaining time for writing and reflection. Optional reading and expanded execution are identified as extension work. Major simulations retain a longer full-path estimate.
 - Source assignments describe the relevant subject area and a reading target rather than inventing page numbers that may not match every edition.
 - The four-week concept / historical problem / simulation / red-team-and-review rhythm repeats throughout the program but bends where the subject calls for a different emphasis.
 - Historical exercises require a decision before comparing it with the historical outcome.

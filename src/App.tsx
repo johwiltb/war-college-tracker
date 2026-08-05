@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from './lib/router'
 import { lazy, Suspense } from 'react'
 import { AppShell } from './components/AppShell'
 import { AuthProvider, useAuth } from './context/AuthContext'

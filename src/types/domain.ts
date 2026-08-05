@@ -54,6 +54,9 @@ export interface CurriculumWeek {
   era: string
   commandLevel: string
   estimatedHours: number
+  coreMinutes: number
+  extensionMinutes: number
+  guidanceSteps: string[]
   learningObjectives: string[]
   readings: Reading[]
   exercises: Exercise[]

@@ -58,6 +58,8 @@ npm run build
 npm run preview
 ```
 
+The deployment workflow now gates publication on linting, type checking, unit tests, a high-severity production-dependency audit, a critical-severity full-tree audit, and the production build. Pull requests receive the same checks through `.github/workflows/quality.yml`.
+
 ## Environment variables
 
 Only public browser configuration is used:
@@ -120,6 +122,7 @@ The repository includes citations and official links where verified without repr
 
 Known limitations:
 
+- Term 1 now uses curated section-level assignments and a two-hour core path with optional extension work. Later terms retain broader topic-level assignments and should receive the same instructor-level curation before formal use.
 - External source availability and doctrine editions change; several readings intentionally omit a URL pending human verification.
 - Markdown is edited and exported as plain text; there is no HTML preview.
 - Guest data is device/browser-local until manually exported or migrated after sign-in.

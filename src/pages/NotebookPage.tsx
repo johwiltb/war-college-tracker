@@ -1,6 +1,6 @@
 import { Download, FilePlus2, FileText, Search, Trash2 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from '../lib/router'
 import { SaveIndicator } from '../components/SaveIndicator'
 import { useData } from '../context/DataContext'
 import { allWeeks } from '../data/curriculum'

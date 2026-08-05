@@ -1,5 +1,5 @@
 import { ArrowRight, BookCheck, Clock3, FileText, Gauge, Target } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link } from '../lib/router'
 import { curriculum, allWeeks } from '../data/curriculum'
 import { useAuth } from '../context/AuthContext'
 import { useData } from '../context/DataContext'

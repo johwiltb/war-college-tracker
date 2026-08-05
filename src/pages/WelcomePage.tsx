@@ -1,5 +1,5 @@
 import { ArrowRight, BookOpen, CircleUserRound, HardDrive, LockKeyhole, ShieldCheck } from 'lucide-react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from '../lib/router'
 import { useAuth } from '../context/AuthContext'
 import { useData } from '../context/DataContext'
 
