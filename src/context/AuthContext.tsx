@@ -1,14 +1,16 @@
-import type { User } from '@supabase/supabase-js'
+import type { Provider, User } from '@supabase/supabase-js'
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { appConfig, isSupabaseConfigured } from '../lib/config'
 import { supabase } from '../lib/supabase'
+
+export type AuthProviderName = Extract<Provider, 'github' | 'google'>
 
 interface AuthContextValue {
   configured: boolean
   user: User | null
   loading: boolean
   error: string | null
-  signIn: () => Promise<void>
+  signIn: (provider?: AuthProviderName) => Promise<void>
   signOut: () => Promise<void>
 }
 
@@ -47,11 +49,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     user,
     loading,
     error,
-    signIn: async () => {
+    signIn: async (provider = 'github') => {
       if (!supabase) throw new Error('Supabase is not configured. Continue in guest mode or add the environment variables.')
       setError(null)
       const redirectTo = `${window.location.origin}${appConfig.basePath}`
-      const { error: signInError } = await supabase.auth.signInWithOAuth({ provider: 'github', options: { redirectTo } })
+      const { error: signInError } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo } })
       if (signInError) {
         setError(signInError.message)
         throw signInError
