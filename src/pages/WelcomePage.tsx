@@ -22,7 +22,8 @@ export function WelcomePage() {
         <h1>Joint Command &amp;<br />War College Tracker</h1>
         <p className="welcome-lede">A disciplined workspace for studying military theory, analyzing campaigns, practicing command judgment, and building a personal doctrine over time.</p>
         <div className="welcome-actions">
-          {configured && <button className="primary-button large-button" onClick={() => void signIn()} disabled={loading}><CircleUserRound size={19} /> Continue with GitHub</button>}
+          {configured && <button className="primary-button large-button" onClick={() => void signIn('github')} disabled={loading}><CircleUserRound size={19} /> Continue with GitHub</button>}
+          {configured && <button className="secondary-button large-button" onClick={() => void signIn('google')} disabled={loading}><CircleUserRound size={19} /> Continue with Google</button>}
           <button className={configured ? 'secondary-button large-button' : 'primary-button large-button'} onClick={continueGuest}><HardDrive size={19} /> Continue in guest mode <ArrowRight size={18} /></button>
         </div>
         {!configured && <div className="setup-note"><LockKeyhole size={18} /><span><strong>Cloud sign-in is not configured.</strong> The full curriculum remains available in guest mode, with progress saved in this browser.</span></div>}
