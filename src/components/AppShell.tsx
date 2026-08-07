@@ -40,7 +40,10 @@ export function AppShell() {
           {user ? (
             <button className="quiet-button account-button" onClick={() => void signOut()}><LogOut size={16} /> Sign out</button>
           ) : configured ? (
-            <button className="quiet-button account-button" onClick={() => void signIn()}><LogIn size={16} /> Sign in</button>
+            <>
+              <button className="quiet-button account-button" onClick={() => void signIn('github')}><LogIn size={16} /> GitHub</button>
+              <button className="quiet-button account-button" onClick={() => void signIn('google')}><LogIn size={16} /> Google</button>
+            </>
           ) : null}
         </div>
       </header>
