@@ -1,4 +1,5 @@
 import './data/applyCuratedReadings'
+import './data/finishingPass'
 import { Navigate, Route, Routes } from './lib/router'
 import { lazy, Suspense } from 'react'
 import { AppShell } from './components/AppShell'
